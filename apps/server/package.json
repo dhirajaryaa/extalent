@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "server for extalent app.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file=.env index.js",
+    "dev": "node --watch --env-file=.env index.js"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mongodb",
+    "jwt"
+  ],
+  "author": "Dhiraj Arya",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
