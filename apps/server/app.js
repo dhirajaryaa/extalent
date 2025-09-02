@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+import passport from './config/passport.js';
+import cookieParser from "cookie-parser";
 
 const app = express();
 
@@ -8,6 +10,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(cors());
+app.use(cookieParser())
+app.use(passport.initialize());
+
+//** Routes setup */
+app.get("/", (req, res) => {
+  return res.status(200).json({ message: "welcome to extalent api services. please use /api/v1/auth routes for authentication" });
+})
+import authRoutes from "./routers/auth.routes.js";
+app.use("/api/v1/auth", authRoutes);
+
 
 //* Error Handler */
 app.use((err, req, res, next) => {
