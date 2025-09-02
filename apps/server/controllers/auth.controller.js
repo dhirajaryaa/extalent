@@ -54,4 +54,20 @@ const googleAuth = AsyncHandler(async (req, res) => {
     );
 });
 
-export { googleAuth };
+const userLogout = AsyncHandler(async (req, res) => {
+  if (!req.user) {
+    throw new ApiError(400, "UnAuthorized Access! Please Login First.");
+  }
+  // clear refresh token from db
+  await userModal.findByIdAndUpdate(req.user._id, {
+    refreshToken: "",
+  });
+
+  return res
+    .status(200)
+    .clearCookie("accessToken", "", cookiesOptions)
+    .clearCookie("refreshToken", "", cookiesOptions)
+    .json(new ApiResponse(200, "user logout successful", null));
+});
+
+export { googleAuth,userLogout };
