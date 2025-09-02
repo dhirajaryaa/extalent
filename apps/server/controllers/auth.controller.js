@@ -71,7 +71,10 @@ const userLogout = AsyncHandler(async (req, res) => {
 });
 
 const getUserProfile = AsyncHandler(async (req, res) => {
-  return res.status(200).json(new ApiResponse(200, "user info", req.user));
+  const user = await userModal
+    .findById(req.user?._id)
+    .select("-googleId -refreshToken");
+  return res.status(200).json(new ApiResponse(200, "user Profile.", user));
 });
 
-export { googleAuth, userLogout ,getUserProfile};
+export { googleAuth, userLogout, getUserProfile };

@@ -28,6 +28,6 @@ router.get(
 // user logout 
 router.post('/logout',authMiddleware,userLogout)
 // user profile 
-router.post('/me',authMiddleware,getUserProfile)
+router.get('/me',authMiddleware,getUserProfile)
 
 export default router;
