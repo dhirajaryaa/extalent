@@ -70,4 +70,8 @@ const userLogout = AsyncHandler(async (req, res) => {
     .json(new ApiResponse(200, "user logout successful", null));
 });
 
-export { googleAuth,userLogout };
+const getUserProfile = AsyncHandler(async (req, res) => {
+  return res.status(200).json(new ApiResponse(200, "user info", req.user));
+});
+
+export { googleAuth, userLogout ,getUserProfile};
