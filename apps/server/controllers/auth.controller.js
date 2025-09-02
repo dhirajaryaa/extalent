@@ -44,8 +44,8 @@ const googleAuth = AsyncHandler(async (req, res) => {
   // return res
   return res
     .status(200)
-    .cookies("accessToken", accessToken, cookiesOptions)
-    .cookies("refreshToken", refreshToken, cookiesOptions)
+    .cookie("accessToken", accessToken, cookiesOptions)
+    .cookie("refreshToken", refreshToken, cookiesOptions)
     .json(
       new ApiResponse(200, "user login successful", {
         user: userInfo,
