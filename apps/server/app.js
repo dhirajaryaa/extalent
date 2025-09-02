@@ -17,8 +17,14 @@ app.use(passport.initialize());
 app.get("/", (req, res) => {
   return res.status(200).json({ message: "welcome to extalent api services. please use /api/v1/auth routes for authentication" });
 })
+// auth routes 
 import authRoutes from "./routers/auth.routes.js";
 app.use("/api/v1/auth", authRoutes);
+// user routes
+import userRoutes from "./routers/user.routes.js";
+app.use("/api/v1/", userRoutes);
+
+
 
 
 //* Error Handler */
