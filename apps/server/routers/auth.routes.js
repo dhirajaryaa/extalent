@@ -1,6 +1,11 @@
 import { Router } from "express";
 import passport from "passport";
-import { getUserProfile, googleAuth, userLogout } from "../controllers/auth.controller.js";
+import {
+  getUserProfile,
+  googleAuth,
+  refreshToken,
+  userLogout,
+} from "../controllers/auth.controller.js";
 import authMiddleware from "../middlewares/auth.middleware.js";
 
 const router = Router();
@@ -25,9 +30,11 @@ router.get(
   }),
   googleAuth
 );
-// user logout 
-router.post('/logout',authMiddleware,userLogout)
-// user profile 
-router.get('/me',authMiddleware,getUserProfile)
+// user logout
+router.post("/logout", authMiddleware, userLogout);
+// user profile
+router.get("/me", authMiddleware, getUserProfile);
+// user token refresh
+router.get("/refresh", refreshToken);
 
 export default router;

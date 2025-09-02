@@ -3,7 +3,8 @@ import ApiError from "../utils/apiError.js";
 import ApiResponse from "../utils/apiResponse.js";
 import generateAccessAndRefreshToken from "../utils/generateToken.js";
 import userModal from "../model/user.model.js";
-import { cookiesOptions } from "../config/env.js";
+import { accessTokenSecret, cookiesOptions } from "../config/env.js";
+import jwt from "jsonwebtoken";
 
 const googleAuth = AsyncHandler(async (req, res) => {
   if (!req.user) {
@@ -71,10 +72,30 @@ const userLogout = AsyncHandler(async (req, res) => {
 });
 
 const getUserProfile = AsyncHandler(async (req, res) => {
-  const user = await userModal
-    .findById(req.user?._id)
-    .select("-googleId -refreshToken");
+  const user = await userModal.findById(req.user?._id);
   return res.status(200).json(new ApiResponse(200, "user Profile.", user));
 });
 
-export { googleAuth, userLogout, getUserProfile };
+const refreshToken = AsyncHandler(async (req, res) => {
+  const incomingToken =
+    req.cookies.accessToken || req.headers.authorization.replace("Bearer ", "");
+  if (!incomingToken) {
+    throw new ApiError(401, "Invalid Token! Please Login First.");
+  }
+
+  const decoded = jwt.verify(incomingToken, accessTokenSecret);
+  const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
+    decoded
+  );
+  return res
+    .status(200)
+    .cookie("accessToken", accessToken, cookiesOptions)
+    .cookie("refreshToken", refreshToken, cookiesOptions)
+    .json(
+      new ApiResponse(200, "user fresh token successful", {
+        accessToken,
+      })
+    );
+});
+
+export { googleAuth, userLogout, getUserProfile, refreshToken };
