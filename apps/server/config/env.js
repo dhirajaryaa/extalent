@@ -9,6 +9,9 @@ const _config = Object.freeze({
   accessTokenExpiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN,
   refreshTokenSecret: process.env.REFRESH_TOKEN_SECRET,
   refreshTokenExpiresIn: process.env.REFRESH_TOKEN_EXPIRES_IN,
+  cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
+  cloudinaryApiKey: process.env.CLOUDINARY_API_KEY,
+  cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET,
 });
 
 const {
@@ -22,6 +25,9 @@ const {
   accessTokenSecret,
   refreshTokenExpiresIn,
   refreshTokenSecret,
+  cloudinaryApiKey,
+  cloudinaryApiSecret,
+  cloudinaryCloudName
 } = _config;
 
 export {
@@ -35,6 +41,9 @@ export {
   accessTokenSecret,
   refreshTokenExpiresIn,
   refreshTokenSecret,
+  cloudinaryApiKey,
+  cloudinaryApiSecret,
+  cloudinaryCloudName
 };
 
 // cookies options
