@@ -4,11 +4,15 @@ const resumeSchema = new mongoose.Schema(
   {
     publicId: {
       type: String,
-      required: true,
+      default: ""
     },
     url: {
       type: String,
-      required: true,
+      default: ""
+    },
+    thumbnailUrl: {
+      type: String,
+      default: "",
     },
   },
   { _id: false }
