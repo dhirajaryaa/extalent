@@ -5,9 +5,9 @@ import { accessTokenSecret } from "../config/env.js";
 
 const authMiddleware = AsyncHandler(async (req, res, next) => {
   const incomingToken =
-    req.cookies.accessToken || req.headers.authorization.replace("Bearer ","");
+    req.cookies.accessToken || req.headers.authorization?.replace("Bearer ","");
   if (!incomingToken) {
-    throw new ApiError(401, "Unauthorized Access");
+    throw new ApiError(401, "Unauthorized Access! or Invalid Token");
   }
 
   const decoded = jwt.verify(incomingToken, accessTokenSecret);
