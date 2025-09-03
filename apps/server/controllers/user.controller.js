@@ -5,7 +5,7 @@ import userModal from "../model/user.model.js";
 import {
   removeFromCloudinary,
   uploadOnCloudinary,
-} from "../services/cloudinary.js";
+} from "../services/cloudinary.service.js";
 
 const userProfile = AsyncHandler(async (req, res) => {
   if (!req.user) {
