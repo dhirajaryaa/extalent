@@ -1,23 +1,5 @@
 import mongoose from "mongoose";
 
-const resumeSchema = new mongoose.Schema(
-  {
-    publicId: {
-      type: String,
-      default: ""
-    },
-    url: {
-      type: String,
-      default: ""
-    },
-    thumbnailUrl: {
-      type: String,
-      default: "",
-    },
-  },
-  { _id: false }
-);
-
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -36,7 +18,10 @@ const userSchema = new mongoose.Schema(
     refreshToken: {
       type: String,
     },
-    resume: resumeSchema,
+    resume: {
+      type: mongoose.Types.ObjectId,
+      ref: "Resume",
+    },
     googleId: {
       type: String,
       required: true,
@@ -47,5 +32,7 @@ const userSchema = new mongoose.Schema(
   }
 );
 
+
 const userModal = mongoose.model("User", userSchema);
 export default userModal;
+
