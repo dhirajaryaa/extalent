@@ -59,4 +59,12 @@ const userResumeUpload = AsyncHandler(async (req, res) => {
   );
 });
 
-export { userProfile, userResumeUpload };
+const resumeInfo = AsyncHandler(async (req,res) => {
+  if (!req.user) {
+    throw new ApiError(400, "UnAuthorized Access! ");
+  }
+  const resume = await resumeModal.findOne({ userId: req.user._id }).select("rowText skills aiData");
+  return res.status(200).json(new ApiResponse(200, "Resume info.", resume));
+})
+
+export { userProfile, userResumeUpload,resumeInfo };
