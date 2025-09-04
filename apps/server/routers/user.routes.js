@@ -19,6 +19,6 @@ router.post(
   userResumeUpload
 );
 // user resume information
-router.get("/profile/upload/info", authMiddleware, resumeInfo);
+router.get("/profile/resume/info", authMiddleware, resumeInfo);
 
 export default router;
