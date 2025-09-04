@@ -13,5 +13,12 @@ async function githubUserInfo(username) {
   if (!res.data) return;
   return res.data;
 };
+async function githubUserReadme(username) {
+  if (!username) return;
+  const githubUrl = `https://raw.githubusercontent.com/${username}/${username}/main/README.md`;
+  const res = await axios(githubUrl);
+  if (!res.data) return;
+  return res.data;
+};
 
-export {githubRepoInfo, githubUserInfo};
+export {githubRepoInfo, githubUserInfo,githubUserReadme};
