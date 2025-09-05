@@ -3,6 +3,7 @@ import authMiddleware from "../middlewares/auth.middleware.js";
 import upload from "../middlewares/multer.middleware.js";
 import {
   resumeInfo,
+  userGithubInfo,
   userProfile,
   userResumeUpload,
 } from "../controllers/user.controller.js";
@@ -20,5 +21,7 @@ router.post(
 );
 // user resume information
 router.get("/profile/resume/info", authMiddleware, resumeInfo);
+//* user resume information
+router.get("/profile/github", authMiddleware, userGithubInfo);
 
 export default router;
