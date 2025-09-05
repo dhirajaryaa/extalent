@@ -6,7 +6,7 @@ const groqClient = new Groq({
 });
 
 async function genAI(userPrompt, systemPrompt, model, config) {
-  return await groq.chat.completions.create({
+  return await groqClient.chat.completions.create({
     messages: [
       {
         role: "system",
