@@ -52,7 +52,7 @@ const githubSchema = new mongoose.Schema({
     {
       name: String,
       repos: Number,
-      score: Number,
+    //   score: Number,
     },
   ],
   lastSynced: {
