@@ -26,6 +26,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+      github: {
+        type: mongoose.Types.ObjectId,
+        ref: "Github",
+      },
   },
   {
     timestamps: true,
