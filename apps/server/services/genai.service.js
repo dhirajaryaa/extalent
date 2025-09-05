@@ -1,11 +1,12 @@
 import groqClient from "../lib/groqai.js";
+import systemPrompt from "../prompt/system.prompt.js";
 
-async function genAI(userPrompt, systemPrompt, model, config) {
+async function genAI(userPrompt, userSystemPrompt, model, config) {
   return await groqClient.chat.completions.create({
     messages: [
       {
         role: "system",
-        content: systemPrompt,
+        content: userSystemPrompt || systemPrompt,
       },
       {
         role: "user",
