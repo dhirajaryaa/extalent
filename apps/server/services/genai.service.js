@@ -1,9 +1,4 @@
-import Groq from "groq-sdk";
-import { groqApiKey } from "../config/env.js";
-
-const groqClient = new Groq({
-  apiKey: groqApiKey,
-});
+import groqClient from "../lib/groqai.js";
 
 async function genAI(userPrompt, systemPrompt, model, config) {
   return await groqClient.chat.completions.create({
