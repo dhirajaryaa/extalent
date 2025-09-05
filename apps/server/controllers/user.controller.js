@@ -14,6 +14,8 @@ import {
   githubUserReadme,
 } from "../services/github.service.js";
 import githubModal from "../model/github.model.js";
+import genAI from "../services/genai.service.js";
+import { extractUserInfo } from "../prompt/user.prompt.js";
 
 const userProfile = AsyncHandler(async (req, res) => {
   if (!req.user) {
@@ -152,4 +154,30 @@ const userGithubInfo = AsyncHandler(async (req, res) => {
     .json(new ApiResponse(200, "user Github info fetched.", updateGithub));
 });
 
-export { userProfile, userResumeUpload, resumeInfo, userGithubInfo };
+const userAllInformation = AsyncHandler(async (req, res) => {
+  // get row text
+  const resume = await resumeModal.findOne({ userId: req.user._id });
+  if (!resume) {
+    throw new ApiError(400, "failed! upload resume first.");
+  }
+  // send to llm
+  const prompt = extractUserInfo.replace("{{RESUME_TEXT}}", resume.rowText);
+  const llmRes = await genAI(prompt);
+  const { skills,...userInfo } = JSON.parse(llmRes);
+  // update in db or create new
+  await resumeModal.findByIdAndUpdate(resume._id, {
+    aiData: userInfo,
+    skills,
+  });
+  return res
+    .status(200)
+    .json(new ApiResponse(200, "user information fetched.", userInfo));
+});
+
+export {
+  userProfile,
+  userResumeUpload,
+  resumeInfo,
+  userGithubInfo,
+  userAllInformation,
+};
