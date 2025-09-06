@@ -94,4 +94,15 @@ const jobMatchScore = AsyncHandler(async (req, res) => {
     );
 });
 
-export { userSavedJobs, saveNewJobs, jobMatchScore };
+const jobScoreHistory = AsyncHandler(async (req, res) => {
+  const scores = await scoreModal
+    .find({ userId: req.user._id })
+    .sort({ createdAt: -1 })
+    .limit(10)
+    .lean();
+  return res
+    .status(200)
+    .json(new ApiResponse(200, "job score history", scores));
+});
+
+export { userSavedJobs, saveNewJobs, jobMatchScore, jobScoreHistory };
