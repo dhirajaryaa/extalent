@@ -41,14 +41,22 @@ const saveNewJobs = AsyncHandler(async (req, res) => {
     location,
     salary,
     experience,
-    type:jobType,
+    type: jobType,
   });
-  if(!jobs){
+  if (!jobs) {
     throw new ApiError(500, "failed to save job");
-  };
+  }
   return res
     .status(200)
     .json(new ApiResponse(200, "job saved successfully", jobs));
 });
 
-export { userSavedJobs,saveNewJobs };
+const jobMatchScore = AsyncHandler(async (req, res) => {
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(200, "job match score calculated successfully", null)
+    );
+});
+
+export { userSavedJobs, saveNewJobs, jobMatchScore };
