@@ -13,6 +13,6 @@ router.get("/saved", authMiddleware, userSavedJobs);
 // save new jobs
 router.post("/save", authMiddleware, saveNewJobs);
 // generate match score
-router.post("/score", authMiddleware, jobMatchScore);
+router.post("/match", authMiddleware, jobMatchScore);
 
 export default router;

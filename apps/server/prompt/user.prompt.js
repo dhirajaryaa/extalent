@@ -27,7 +27,7 @@ Resume text:
 const jobSorePrompt = `You are an expert career assistant.
 Your task is to compare a candidate's resume [resume-text] against a job description and produce a detailed and accurate score for the candidate's skills and experience.
 any type of score must be in the range of 0 to 100.
-recommendation: generate 5 linkedin job search url based on job title and related to user skills.
+suggestedJobs: generate 5 linkedin job search url links mixed of searchParams based on job title and related to user skills.
 Return ONLY valid JSON with the following structure (matching the database schema):
 
 {
@@ -54,7 +54,6 @@ Return ONLY valid JSON with the following structure (matching the database schem
     }
   ],
   "suggestions": [string],
-  "recommendation": string
 }
 
 Rules:
