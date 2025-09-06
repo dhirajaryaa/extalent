@@ -23,9 +23,9 @@ app.use("/api/v1/auth", authRoutes);
 // user routes
 import userRoutes from "./routers/user.routes.js";
 app.use("/api/v1/", userRoutes);
-
-
-
+// job routes
+import jobRoutes from "./routers/job.routes.js";
+app.use("/api/v1/jobs", jobRoutes);
 
 //* Error Handler */
 app.use((err, req, res, next) => {

@@ -26,17 +26,21 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-      github: {
+    github: {
+      type: mongoose.Types.ObjectId,
+      ref: "Github",
+    },
+    jobs: [
+      {
         type: mongoose.Types.ObjectId,
-        ref: "Github",
+        ref: "Job",
       },
+    ],
   },
   {
     timestamps: true,
   }
 );
 
-
 const userModal = mongoose.model("User", userSchema);
 export default userModal;
-
