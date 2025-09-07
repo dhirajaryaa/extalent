@@ -8,6 +8,13 @@ import {
   SquarePlay,
   ArrowRight,
 } from "lucide-react";
+import { Link } from "react-router";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 function LandingPage() {
   const features = [
@@ -34,6 +41,34 @@ function LandingPage() {
       description:
         "Discover the skills you need to learn next for better opportunities.",
       icon: Target,
+    },
+  ];
+
+  const faqs = [
+    {
+      question: "What is JobFit?",
+      answer:
+        "JobFit is an AI-powered platform that analyzes your resume and matches you with jobs that best fit your skills and experience.",
+    },
+    {
+      question: "How does JobFit calculate my job match score?",
+      answer:
+        "Our algorithm compares your resume, skills, and experience with job requirements, then generates a personalized score.",
+    },
+    {
+      question: "Is JobFit free to use?",
+      answer:
+        "Yes, you can get started for free. Premium features like detailed insights and advanced analytics may be available later.",
+    },
+    {
+      question: "Do I need to upload my resume?",
+      answer:
+        "Yes, uploading your resume helps JobFit give you accurate job matches and skill gap recommendations.",
+    },
+    {
+      question: "Can JobFit help me improve my chances of getting hired?",
+      answer:
+        "Absolutely! JobFit highlights areas where you can improve your resume and skills, so you can become a stronger candidate.",
     },
   ];
 
@@ -64,14 +99,19 @@ function LandingPage() {
             resume, and goals—powered by AI insights.
           </p>
           <div className="flex items-center gap-3 mt-6">
-            <Button className="cursor-pointer flex gap-2 items-center sm:text-[14px]">
-              Get Started Free <ArrowRight size={18} />
-            </Button>
+              <Button
+                asChild
+                size={"lg"}
+                className="cursor-pointer flex gap-2 items-center"
+              >
+            <Link to="/login">
+                Get Started Free <ArrowRight size={18} />
+            </Link>
+              </Button>
             <Button
+              size={"lg"}
               variant="outline"
-              className={
-                "cursor-pointer flex gap-2 items-center sm:text-[14px]"
-              }
+              className={"cursor-pointer flex gap-2 items-center"}
             >
               How it work
               <SquarePlay size={18} />
@@ -90,7 +130,10 @@ function LandingPage() {
           <div className="flex gap-4 items-center my-8 w-full justify-center flex-wrap">
             {features.map((feature) => {
               return (
-                <div className="flex items-center gap-3 flex-col border-2 border-gray-200 rounded-xl p-4 w-full max-w-xs bg-background/50 shadow-lg">
+                <div
+                  key={feature.title}
+                  className="flex items-center gap-3 flex-col border-2 border-gray-200 rounded-xl p-4 w-full max-w-xs bg-background/50 shadow-lg"
+                >
                   {feature.icon && (
                     <feature.icon className="size-8 text-primary" />
                   )}
@@ -105,6 +148,57 @@ function LandingPage() {
             })}
           </div>
         </div>
+        {/* faq  */}
+        <div className="flex items-center gap-3 justify-center flex-col text-center mt-10">
+          <h2 className="font-semibold sm:text-2xl text-xl text-gray-800">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-sm text-gray-600">
+            Everything you need to know about JobFit, in one place.
+          </p>
+          {/* <div> */}
+          {faqs.map((item, index) => {
+            return (
+              <Accordion
+                key={item.question}
+                type="single"
+                collapsible
+                className="w-full max-w-2xl"
+                defaultValue="item-1"
+              >
+                <AccordionItem value={`item-${index + 1}`}>
+                  <AccordionTrigger>{item.question}</AccordionTrigger>
+                  <AccordionContent
+                    className={"text-left bg-background/50 p-2 rounded-sm"}
+                  >
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            );
+          })}
+        </div>
+        {/* </div> */}
+
+        {/* footer  */}
+        <footer className="mt-10 border-t border-gray-50">
+          <div className="max-w-7xl py-5 mx-auto px-5 flex flex-col md:flex-row items-center justify-between text-sm text-gray-600">
+            {/* Links */}
+            <div className="flex gap-4 mb-2 md:mb-0">
+              <Link to="/privacy-policy" className="hover:text-gray-900">
+                Privacy Policy
+              </Link>
+              <Link href="/terms-of-service" className="hover:text-gray-900">
+                Terms of Service
+              </Link>
+            </div>
+
+            {/* Copyright */}
+            <p className="mt-2 md:mt-0 text-sm">
+              © {new Date().getFullYear()} JobFit. All rights reserved.
+            </p>
+          </div>
+        </footer>
       </section>
     </main>
   );
