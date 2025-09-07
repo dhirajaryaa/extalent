@@ -4,9 +4,9 @@ import { Button } from "../ui/button";
 
 function Navbar() {
   return (
-    <nav className="flex justify-between items-center px-4 py-2 ">
+    <nav className="flex justify-between items-center p-2 px-3 bg-background rounded-2xl sticky top-2 z-40">
       <Logo />
-      <Button className="bg-primary rounded-xl">Get Started</Button>
+      <Button className="rounded-lg">Get Started</Button>
     </nav>
   );
 }
