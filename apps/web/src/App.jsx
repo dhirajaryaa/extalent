@@ -1,12 +1,14 @@
-import React from 'react'
-import { Button } from './components/ui/button'
+import userStore from "./store/user.store";
+import { Navigate, Outlet } from "react-router";
 
 function App() {
-  return (
-    <div>
-      <Button>Hello world!</Button>
-    </div>
-  )
+  const { user, isAuthenticated } = userStore();
+
+  return user && isAuthenticated ? (
+    <Outlet />
+  ) : (
+    <Navigate to={"/login"} replace />
+  );
 }
 
-export default App
+export default App;
