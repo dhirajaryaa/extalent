@@ -48,12 +48,6 @@ const googleAuth = AsyncHandler(async (req, res) => {
     .cookie("accessToken", accessToken, cookiesOptions)
     .cookie("refreshToken", refreshToken, cookiesOptions)
     .redirect(`${frontendUrl}/dashboard`);
-    // .json(
-    //   new ApiResponse(200, "user login successful", {
-    //     user: userInfo,
-    //     accessToken,
-    //   })
-    // );
 });
 
 const userLogout = AsyncHandler(async (req, res) => {
