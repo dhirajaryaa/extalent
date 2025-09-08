@@ -11,8 +11,10 @@ function Navbar() {
       <div className="flex gap-3">
 
         <Button className="rounded-lg" asChild><Link to={"/login"}>Get Started</Link></Button>
-        <Button variant="outline" size="icon" className={"rounded-full"}>
+        <Button  asChild variant="outline" size="icon" className={"rounded-full"}>
+        <a href="https://github.com/dhirajaryaa/extalent" target="_blank">
           <Github />
+           </a>
         </Button>
       </div>
     </nav>

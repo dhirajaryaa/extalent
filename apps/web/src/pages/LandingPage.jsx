@@ -46,29 +46,29 @@ function LandingPage() {
 
   const faqs = [
     {
-      question: "What is JobFit?",
+      question: "What is ExTalent?",
       answer:
-        "JobFit is an AI-powered platform that analyzes your resume and matches you with jobs that best fit your skills and experience.",
+        "ExTalent is an AI-powered platform that analyzes your resume and matches you with jobs that best fit your skills and experience.",
     },
     {
-      question: "How does JobFit calculate my job match score?",
+      question: "How does ExTalent calculate my job match score?",
       answer:
         "Our algorithm compares your resume, skills, and experience with job requirements, then generates a personalized score.",
     },
     {
-      question: "Is JobFit free to use?",
+      question: "Is ExTalent free to use?",
       answer:
         "Yes, you can get started for free. Premium features like detailed insights and advanced analytics may be available later.",
     },
     {
       question: "Do I need to upload my resume?",
       answer:
-        "Yes, uploading your resume helps JobFit give you accurate job matches and skill gap recommendations.",
+        "Yes, uploading your resume helps ExTalent give you accurate job matches and skill gap recommendations.",
     },
     {
-      question: "Can JobFit help me improve my chances of getting hired?",
+      question: "Can ExTalent help me improve my chances of getting hired?",
       answer:
-        "Absolutely! JobFit highlights areas where you can improve your resume and skills, so you can become a stronger candidate.",
+        "Absolutely! ExTalent highlights areas where you can improve your resume and skills, so you can become a stronger candidate.",
     },
   ];
 
@@ -95,7 +95,7 @@ function LandingPage() {
             🚀 Find Your Best Job Match in Minutes
           </h1>
           <p className="text-sm text-gray-600 sm:text-lg w-xl">
-            JobFit helps candidates discover roles that match their skills,
+            ExTalent helps candidates discover roles that match their skills,
             resume, and goals—powered by AI insights.
           </p>
           <div className="flex items-center gap-3 mt-6">
@@ -154,7 +154,7 @@ function LandingPage() {
             Frequently Asked Questions
           </h2>
           <p className="text-sm text-gray-600">
-            Everything you need to know about JobFit, in one place.
+            Everything you need to know about ExTalent, in one place.
           </p>
           {/* <div> */}
           {faqs.map((item, index) => {
@@ -195,7 +195,7 @@ function LandingPage() {
 
             {/* Copyright */}
             <p className="mt-2 md:mt-0 text-sm">
-              © {new Date().getFullYear()} JobFit. All rights reserved.
+              © {new Date().getFullYear()} ExTalent. All rights reserved.
             </p>
           </div>
         </footer>
