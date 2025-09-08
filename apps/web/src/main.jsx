@@ -7,16 +7,21 @@ import { LandingPage, LoginPage } from "./pages";
 
 // configure routes
 const router = createBrowserRouter([
-  // home page
-  {
+  { // home page
     path: "/",
     Component: LandingPage,
+    index: true
   },
-  // login page
-  {
+  {  // login page
     path: "/login",
     Component: LoginPage
   },
+  
+  { // protected page
+    Component: App,
+    children: [
+    ]
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(
