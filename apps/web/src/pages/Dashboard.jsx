@@ -1,11 +1,12 @@
+import Layout from "@/layout/layout";
 import userStore from "@/store/user.store";
-import React from "react";
 
 function Dashboard() {
   const { user } = userStore();
-  // console.log(user);
   
-  return <div>Dashboard</div>;
+  return <div>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. A deleniti exercitationem nostrum facere ipsum, et eveniet totam obcaecati officia eaque illo neque velit voluptates at! Provident dicta saepe voluptate commodi!
+  </div>;
 }
 
 export default Dashboard;

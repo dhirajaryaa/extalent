@@ -1,12 +1,13 @@
-import { Navigate, Outlet,useLoaderData } from "react-router";
+import { Navigate, Outlet, useLoaderData } from "react-router";
+import Layout from "./layout/layout";
 
 function App() {
-  const {isAuthenticated} = useLoaderData();
-  console.log(isAuthenticated);
-  
+  const { isAuthenticated } = useLoaderData();
 
   return isAuthenticated ? (
-    <Outlet />
+    <Layout>
+      <Outlet />
+    </Layout>
   ) : (
     <Navigate to={"/login"} replace />
   );
