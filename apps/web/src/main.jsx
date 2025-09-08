@@ -3,29 +3,44 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router";
-import { LandingPage, LoginPage } from "./pages";
+import { Dashboard, LandingPage, LoginPage } from "./pages";
+import { AuthChecker } from "./lib/authChecker";
+import { Suspense } from "react";
 
 // configure routes
 const router = createBrowserRouter([
-  { // home page
+  {
+    // home page
     path: "/",
     Component: LandingPage,
-    index: true
+    index: true,
   },
-  {  // login page
+  {
+    // login page
     path: "/login",
-    Component: LoginPage
+    Component: LoginPage,
   },
-  
-  { // protected page
+
+  {
+    // protected page
     Component: App,
+    loader: AuthChecker,
+     HydrateFallback: () => <div className="p-4 text-center text-gray-500">Loading protected route...</div>,
     children: [
-    ]
-  }
+      {
+        // dashboard page
+        path: "dashboard",
+        Component: Dashboard,
+      },
+    ],
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Suspense fallback={<div>Loading...</div>}>
+      <RouterProvider router={router} />
+    </Suspense>
   </StrictMode>
+
 );

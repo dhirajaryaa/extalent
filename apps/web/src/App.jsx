@@ -1,10 +1,11 @@
-import userStore from "./store/user.store";
-import { Navigate, Outlet } from "react-router";
+import { Navigate, Outlet,useLoaderData } from "react-router";
 
 function App() {
-  const { user, isAuthenticated } = userStore();
+  const {isAuthenticated} = useLoaderData();
+  console.log(isAuthenticated);
+  
 
-  return user && isAuthenticated ? (
+  return isAuthenticated ? (
     <Outlet />
   ) : (
     <Navigate to={"/login"} replace />
