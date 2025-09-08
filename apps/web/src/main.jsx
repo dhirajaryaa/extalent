@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router";
-import { LandingPage } from "./pages";
+import { LandingPage, LoginPage } from "./pages";
 
 // configure routes
 const router = createBrowserRouter([
@@ -11,6 +11,11 @@ const router = createBrowserRouter([
   {
     path: "/",
     Component: LandingPage,
+  },
+  // login page
+  {
+    path: "/login",
+    Component: LoginPage
   },
 ]);
 
