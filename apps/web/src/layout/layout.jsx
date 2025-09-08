@@ -1,12 +1,12 @@
-import AppSidebar from "@/components/custom/AppSidebar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar, Header } from "@/components/custom";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 export default function Layout({ children }) {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main>
-        <SidebarTrigger />
+      <main className="bg-accent h-screen py-6 px-10">
+        <Header />
         {children}
       </main>
     </SidebarProvider>

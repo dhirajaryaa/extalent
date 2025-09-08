@@ -44,8 +44,8 @@ const AppSidebar = () => {
   ];
 
   return (
-    <Sidebar>
-      <SidebarHeader />
+    <Sidebar >
+      <SidebarHeader >
       {/* logo */}
       <SidebarMenu>
         <SidebarMenuItem >
@@ -58,6 +58,7 @@ const AppSidebar = () => {
           </SidebarMenuButton>
         </SidebarMenuItem>
       </SidebarMenu>
+      </SidebarHeader>
       <SidebarContent>
         {/* nav links  */}
         <SidebarMenu className={"mt-10"}>
