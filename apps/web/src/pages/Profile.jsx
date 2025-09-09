@@ -18,7 +18,7 @@ function Profile() {
     setActivePage("Profile");
   }, []);
   return (
-    <section className="mt-5">
+    <section className="py-5 px-4">
       {/* basic info  */}
       <div className="flex flex-col bg-background rounded-2xl p-4 sm:px-8 sm:py-6 lg:max-w-3xl mx-auto w-full">
         <h2 className="text-base sm:text-lg font-semibold capitalize mb-4">

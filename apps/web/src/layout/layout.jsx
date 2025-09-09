@@ -5,7 +5,7 @@ export default function Layout({ children }) {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main className="bg-accent h-screen p-4 sm:py-6 sm:px-10 w-full">
+      <main className="bg-accent w-full min-h-svh">
         <Header />
         {children}
       </main>
