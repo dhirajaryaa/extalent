@@ -1,8 +1,10 @@
 import { Resume, UserAvatar } from "@/components/custom";
+import { Button } from "@/components/ui/button";
 import uiStore from "@/store/ui.store";
 import userStore from "@/store/user.store";
 import { formatDate } from "date-fns";
 import { Mail } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { MapPin } from "lucide-react";
 import { Calendar, Verified } from "lucide-react";
 import { useEffect } from "react";
@@ -58,6 +60,17 @@ function Profile() {
           Resume
         </h2>
         <Resume />
+      </div>
+      {/* Links  */}
+      <div className="flex flex-col bg-background rounded-2xl px-8 py-6 max-w-3xl mx-auto mt-5">
+        <h2 className="text-base sm:text-lg font-semibold capitalize mb-4">
+          Social Links
+        </h2>
+        <div className="flex items-center gap-2">
+          <Button variant={'outline'}>Github <ExternalLink /></Button>
+          <Button variant={'outline'}>Portfolio <ExternalLink /></Button>
+          <Button variant={'outline'}>Linkedin <ExternalLink /></Button>
+        </div>
       </div>
     
     </section>
