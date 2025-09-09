@@ -9,7 +9,7 @@ import { UserAvatar } from ".";
 function Header() {
   const {activePage} = uiStore();
   return (
-    <header className="bg-muted flex items-center justify-between">
+    <header className="bg-muted flex items-center justify-between sticky top-4 z-40 p-4">
       <div className="flex items-center gap-2">
         <SidebarTrigger className="-ml-1" />
         <Separator
