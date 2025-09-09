@@ -1,12 +1,17 @@
-import React from 'react'
-import { Button } from './components/ui/button'
+import { Navigate, Outlet, useLoaderData } from "react-router";
+import Layout from "./layout/layout";
 
 function App() {
-  return (
-    <div>
-      <Button>Hello world!</Button>
-    </div>
-  )
+  
+  const { isAuthenticated } = useLoaderData();
+
+  return isAuthenticated ? (
+    <Layout>
+      <Outlet />
+    </Layout>
+  ) : (
+    <Navigate to={"/login"} replace />
+  );
 }
 
-export default App
+export default App;
