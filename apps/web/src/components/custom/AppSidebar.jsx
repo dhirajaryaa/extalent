@@ -15,7 +15,7 @@ import {
   UserCircleIcon,
   StarIcon,
   LogOut,
-  CircleQuestionMark
+  CircleQuestionMark,
 } from "lucide-react";
 
 const AppSidebar = () => {
@@ -44,26 +44,24 @@ const AppSidebar = () => {
   ];
 
   return (
-    <Sidebar >
-      <SidebarHeader >
-      {/* logo */}
-      <SidebarMenu>
-        <SidebarMenuItem >
-          <SidebarMenuButton
-            asChild
-          >
-            <Link to="/dashboard">
-              <Logo />
-            </Link>
-          </SidebarMenuButton>
-        </SidebarMenuItem>
-      </SidebarMenu>
+    <Sidebar>
+      <SidebarHeader>
+        {/* logo */}
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild>
+              <Link to="/dashboard">
+                <Logo />
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
         {/* nav links  */}
         <SidebarMenu className={"mt-10"}>
           {links.map((link) => (
-            <SidebarMenuItem>
+            <SidebarMenuItem key={link.title}>
               <Link to={link.url}>
                 <SidebarMenuButton
                   asChild
@@ -73,7 +71,7 @@ const AppSidebar = () => {
                 >
                   <div className="py-6 flex gap-3 text-lg sm:text-[16px] px-3 font-medium ">
                     <span>
-                      <link.icon className="size-5 sm:size-6"/>
+                      <link.icon className="size-5 sm:size-6" />
                     </span>
                     <span>{link.title}</span>
                   </div>
@@ -85,38 +83,38 @@ const AppSidebar = () => {
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
-        <SidebarMenuItem>
-              <Link to={'support'}>
-                <SidebarMenuButton
-                  asChild
-                  tooltip={'support'}
-                   isActive={pathname.startsWith('support')}
-                  className=" mx-auto text-sidebar-accent-foreground/60 w-[90%]"
-                >
-                  <div className="py-5 flex gap-3 text-lg sm:text-[16px] px-3 font-medium ">
-                    <span>
-                        <CircleQuestionMark className="size-5 sm:size-6" />
-                    </span>
-                    <span>Support</span>
-                  </div>
-                </SidebarMenuButton>
-              </Link>
-            </SidebarMenuItem>
-            {/* logout  */}
-        <SidebarMenuItem>
-                <SidebarMenuButton
-                  asChild
-                  tooltip={'Logout'}
-                  className="mx-auto text-sidebar-accent-foreground/60 w-[90%]"
-                >
-                  <div className="py-5 flex gap-3 text-lg sm:text-[16px] px-3 font-medium ">
-                    <span>
-                        <LogOut className="size-5 sm:size-6" />
-                    </span>
-                    <span>Logout</span>
-                  </div>
-                </SidebarMenuButton>
-            </SidebarMenuItem>
+          <SidebarMenuItem>
+            <Link to={"support"}>
+              <SidebarMenuButton
+                asChild
+                tooltip={"support"}
+                isActive={pathname.startsWith("support")}
+                className=" mx-auto text-sidebar-accent-foreground/60 w-[90%]"
+              >
+                <div className="py-5 flex gap-3 text-lg sm:text-[16px] px-3 font-medium ">
+                  <span>
+                    <CircleQuestionMark className="size-5 sm:size-6" />
+                  </span>
+                  <span>Support</span>
+                </div>
+              </SidebarMenuButton>
+            </Link>
+          </SidebarMenuItem>
+          {/* logout  */}
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              asChild
+              tooltip={"Logout"}
+              className="mx-auto text-sidebar-accent-foreground/60 w-[90%]"
+            >
+              <div className="py-5 flex gap-3 text-lg sm:text-[16px] px-3 font-medium ">
+                <span>
+                  <LogOut className="size-5 sm:size-6" />
+                </span>
+                <span>Logout</span>
+              </div>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
