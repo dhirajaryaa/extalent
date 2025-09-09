@@ -6,6 +6,10 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import { Dashboard, LandingPage, LoginPage, Profile } from "./pages";
 import { AuthChecker } from "./lib/authChecker";
 import { Suspense } from "react";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+
+// query client setup
+const queryClient = new QueryClient();
 
 // configure routes
 const router = createBrowserRouter([
@@ -22,7 +26,11 @@ const router = createBrowserRouter([
   {
     Component: App,
     loader: AuthChecker,
-     HydrateFallback: () => <div className="p-4 text-center text-gray-500">Loading protected route...</div>,
+    HydrateFallback: () => (
+      <div className="p-4 text-center text-gray-500">
+        Loading protected route...
+      </div>
+    ),
     children: [
       {
         path: "dashboard",
@@ -38,9 +46,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Suspense fallback={<div>Loading...</div>}>
-      <RouterProvider router={router} />
-    </Suspense>
+    <QueryClientProvider client={queryClient}>
+      <Suspense fallback={<div>Loading...</div>}>
+        <RouterProvider router={router} />
+      </Suspense>
+    </QueryClientProvider>
   </StrictMode>
-
 );
