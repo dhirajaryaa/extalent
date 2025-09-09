@@ -13,6 +13,8 @@ const _config = Object.freeze({
   cloudinaryApiKey: process.env.CLOUDINARY_API_KEY,
   cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET,
   groqApiKey: process.env.GROQ_API_KEY,
+  frontendUrl: process.env.FRONTEND_URL,
+  allowOrigin: process.env.ALLOW_ORIGIN,
 });
 
 const {
@@ -29,7 +31,9 @@ const {
   cloudinaryApiKey,
   cloudinaryApiSecret,
   cloudinaryCloudName,
-  groqApiKey
+  groqApiKey,
+  allowOrigin,
+  frontendUrl
 } = _config;
 
 export {
@@ -46,7 +50,9 @@ export {
   cloudinaryApiKey,
   cloudinaryApiSecret,
   cloudinaryCloudName,
-  groqApiKey
+  groqApiKey,
+  allowOrigin,
+  frontendUrl
 };
 
 // cookies options
