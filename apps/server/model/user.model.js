@@ -15,6 +15,12 @@ const skillsSchema = new mongoose.Schema(
   { _id: false }
 );
 
+const linkSchema = new mongoose.Schema(
+      {
+        name: String,
+        url: String,
+    },{_id:false});
+
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -46,6 +52,7 @@ const userSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "Github",
     },
+    links:[linkSchema],
     jobs: [
       {
         type: mongoose.Types.ObjectId,
