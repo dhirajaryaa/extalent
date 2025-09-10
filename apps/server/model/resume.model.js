@@ -22,8 +22,7 @@ const resumeSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
-  skills: [String],
-  aiData: {
+  resumeData: {
     type: Object,
     default: {},
   }, // structured info: education, experience
