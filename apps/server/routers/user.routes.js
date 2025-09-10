@@ -6,8 +6,8 @@ import {
   userAllInformation,
   userGithubInfo,
   userProfile,
-  userResumeUpload,
 } from "../controllers/user.controller.js";
+import userResumeUpload from "../controllers/user/resume.controller.js";
 
 const router = Router();
 
