@@ -1,22 +1,25 @@
 import mongoose from "mongoose";
 
-const resumeSchema = new mongoose.Schema(
+const skillsSchema = new mongoose.Schema(
   {
-    publicId: {
+    skill: {
       type: String,
-      default: ""
+      required: true,
     },
-    url: {
-      type: String,
-      default: ""
-    },
-    thumbnailUrl: {
-      type: String,
-      default: "",
+    score: {
+      type: Number,
+      default: 0,
+      required: true,
     },
   },
   { _id: false }
 );
+
+const linkSchema = new mongoose.Schema(
+      {
+        name: String,
+        url: String,
+    },{_id:false});
 
 const userSchema = new mongoose.Schema(
   {
@@ -36,11 +39,26 @@ const userSchema = new mongoose.Schema(
     refreshToken: {
       type: String,
     },
-    resume: resumeSchema,
+    skills: [skillsSchema],
+    resume: {
+      type: mongoose.Types.ObjectId,
+      ref: "Resume",
+    },
     googleId: {
       type: String,
       required: true,
     },
+    github: {
+      type: mongoose.Types.ObjectId,
+      ref: "Github",
+    },
+    links:[linkSchema],
+    jobs: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Job",
+      },
+    ],
   },
   {
     timestamps: true,
