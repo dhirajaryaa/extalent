@@ -15,6 +15,7 @@ const _config = Object.freeze({
   groqApiKey: process.env.GROQ_API_KEY,
   frontendUrl: process.env.FRONTEND_URL,
   allowOrigin: process.env.ALLOW_ORIGIN,
+  redisDbUri: process.env.REDIS_DB_URI,
 });
 
 const {
@@ -33,7 +34,8 @@ const {
   cloudinaryCloudName,
   groqApiKey,
   allowOrigin,
-  frontendUrl
+  frontendUrl,
+  redisDbUri
 } = _config;
 
 export {
@@ -52,7 +54,8 @@ export {
   cloudinaryCloudName,
   groqApiKey,
   allowOrigin,
-  frontendUrl
+  frontendUrl,
+  redisDbUri
 };
 
 // cookies options
