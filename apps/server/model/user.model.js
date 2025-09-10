@@ -1,5 +1,20 @@
 import mongoose from "mongoose";
 
+const skillsSchema = new mongoose.Schema(
+  {
+    skill: {
+      type: String,
+      required: true,
+    },
+    score: {
+      type: Number,
+      default: 0,
+      required: true,
+    },
+  },
+  { _id: false }
+);
+
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -18,6 +33,7 @@ const userSchema = new mongoose.Schema(
     refreshToken: {
       type: String,
     },
+    skills: [skillsSchema],
     resume: {
       type: mongoose.Types.ObjectId,
       ref: "Resume",
