@@ -1,8 +1,8 @@
-import AsyncHandler from "../utils/asyncHandler.js";
-import ApiError from "../utils/apiError.js";
-import ApiResponse from "../utils/apiResponse.js";
-import generateAccessAndRefreshToken from "../utils/generateToken.js";
-import { accessTokenSecret, cookiesOptions } from "../config/env.js";
+import AsyncHandler from "../../utils/asyncHandler.js";
+import ApiError from "../../utils/apiError.js";
+import ApiResponse from "../../utils/apiResponse.js";
+import generateAccessAndRefreshToken from "../../utils/generateToken.js";
+import { accessTokenSecret, cookiesOptions } from "../../config/env.js";
 import jwt from "jsonwebtoken";
 
 const tokenRefresh = AsyncHandler(async (req, res) => {

@@ -1,6 +1,6 @@
-import AsyncHandler from "../utils/asyncHandler.js";
-import ApiResponse from "../utils/apiResponse.js";
-import userModal from "../model/user.model.js";
+import AsyncHandler from "../../utils/asyncHandler.js";
+import ApiResponse from "../../utils/apiResponse.js";
+import userModal from "../../model/user.model.js";
 
 const getCurrentUser = AsyncHandler(async (req, res) => {
   const user = await userModal.findById(req.user?._id);

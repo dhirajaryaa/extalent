@@ -1,10 +1,10 @@
-import ApiResponse from "../utils/apiResponse.js";
-import AsyncHandler from "../utils/asyncHandler.js";
-import ApiError from "../utils/apiError.js";
-import userModal from "../model/user.model.js";
+import ApiResponse from "../../utils/apiResponse.js";
+import AsyncHandler from "../../utils/asyncHandler.js";
+import ApiError from "../../utils/apiError.js";
+import userModal from "../../model/user.model.js";
 import {
   cookiesOptions,
-} from "../config/env.js";
+} from "../../config/env.js";
 
 const userLogout = AsyncHandler(async (req, res) => {
   if (!req.user) {
