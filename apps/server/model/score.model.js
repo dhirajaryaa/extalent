@@ -46,7 +46,7 @@ const score = new mongoose.Schema({
     default: 0,
     required: true,
   },
-  totalScore: {
+  overAllScore: {
     type: Number,
     default: 0,
     required: true,
@@ -60,26 +60,14 @@ const scoreSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    savedJobId: {
+    JobId: {
       type: mongoose.Types.ObjectId,
       ref: "Job",
-    },
-    jobSaved: {
-      type: Boolean,
-      default: false,
-    },
-    linkedinJobId: {
-      type: String,
-      required: true,
+      required: true
     },
     score: score,
     matchSkills: [skillsSchema],
     messingSkills: [skillsSchema],
-    suggestedJobs: [
-      {
-        type: String,
-      },
-    ],
     improvementSkills: [improvementSkill],
     suggestions: [String],
   },
