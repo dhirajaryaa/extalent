@@ -8,6 +8,8 @@ Return ONLY valid JSON with the following fields:
   "email": string,
   "phone": string,
   "location": string,
+  "links": [ { "name": string, "url": string } ],
+  "githubUsername": string,
   "education": [ { "degree": string, "institute": string, "year": string } ],
   "project or proof of work(pov)": [ { "projectName": string, "description": string, "impacts": [string],features: [string],technologies: [string],liveLink: string,githubLink or gitlabLink: string } ],
   "experience": [ { "role": string, "company": string, "years": string } ],
