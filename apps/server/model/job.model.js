@@ -15,10 +15,6 @@ const jobSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    description: {
-      type: String,
-      required: true,
-    },
     company: {
       type: String,
       required: true,
@@ -26,6 +22,15 @@ const jobSchema = new mongoose.Schema(
     role: {
       type: String,
       required: true,
+    },
+    fitScore: {
+      type: mongoose.Types.ObjectId,
+      ref: "Score",
+      required: true,
+    },
+    jobSaved: {
+      type: Boolean,
+      default: false,
     },
     jobType: {
       type: String,
