@@ -1,6 +1,7 @@
 import app from "./app.js";
 import connectDB from "./db/connect.js";
 import { port } from "./config/env.js";
+import worker from "./queue/worker/worker.js";
 
 // server listen
 connectDB()
