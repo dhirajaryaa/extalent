@@ -1,7 +1,7 @@
 import app from "./app.js";
 import connectDB from "./db/connect.js";
 import { port } from "./config/env.js";
-import worker from "./queue/worker/worker.js";
+import userInfoExtractorWorker from "./queue/queueWorker.js"; // only import so can that run worker [!important for if run worker on same  , recommended run on anther process using node cluster]
 
 // server listen
 connectDB()
