@@ -6,15 +6,15 @@ import {
   removeFromCloudinary,
   uploadOnCloudinary,
 } from "../../services/cloudinary.service.js";
-import pdfParser from "../../queue/producer/resumeParse.js";
+import userInfoExtractor from "../../queue/queueJob.js";
 
 const userResumeUpload = AsyncHandler(async (req, res) => {
   const userLocalResume = req.file?.path;
   if (!userLocalResume) {
     throw new ApiError(400, "Resume not found or failed to upload");
   }
-  // pdf parser job create
- await pdfParser(userLocalResume);
+  //! pdf parser job create - job run
+ await userInfoExtractor(userLocalResume);
 
   // upload on cloudinary
   const uploadedResume = await uploadOnCloudinary(userLocalResume);

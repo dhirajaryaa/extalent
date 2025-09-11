@@ -1,19 +1,38 @@
-import { Queue, QueueEvents} from "bullmq";
+import { FlowProducer } from "bullmq";
 import redisClient from "../config/redis.js";
 
-const userInfoExtractor = new Queue("user-info-extractor", {
+// create new flow producer
+const flowQueue = new FlowProducer({
   connection: redisClient,
 });
-const userInfoExtractorEvent = new QueueEvents("user-info-extractor");
 
+const queueName = "userInfoPipeline";
+async function userInfoExtractor(pdfLocalFilePath) {
+  if(!pdfLocalFilePath){
+    throw new Error("fail to trigger queue job, pdf path missing!");
+  };
 
+  const flowTree = await flowQueue.add({
+    // Get Github Info
+    name: "Github_Stats",
+    queueName,
+    children: [
+      {
+        // Gen AI Parse data
+        name: "GenAI_Info_Extractor",
+        queueName,
+        children: [
+          {
+            // pdf-Parser
+            name: "User_pdf_Reader",
+            queueName,
+            data: { pdfLocalFilePath },
+          },
+        ],
+      },
+    ],
+  });
+  return flowTree;
+}
 
-userInfoExtractorEvent.on("failed", ({ jobId, failedReason }) => {
-  console.log(`Job ${jobId} failed: ${failedReason}`);
-});
-userInfoExtractorEvent.on("completed", ({ jobId, returnvalue }) => {
-  console.log(`Job ${jobId} completed`);
-});
-
-
-export { userInfoExtractor, userInfoExtractorEvent };
+export default userInfoExtractor;
