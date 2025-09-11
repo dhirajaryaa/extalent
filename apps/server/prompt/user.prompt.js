@@ -11,13 +11,15 @@ Return ONLY valid JSON with the following fields:
   "links": [ { "name": string, "url": string } ],
   "githubUsername": string,
   "education": [ { "degree": string, "institute": string, "year": string } ],
-  "project or proof of work(pov)": [ { "projectName": string, "description": string, "impacts": [string],features: [string],technologies: [string],liveLink: string,githubLink or gitlabLink: string } ],
+  "project or proof of work(pov)": [ { "projectName": string, "description": string, "impacts": [string],features: [string],technologies: [string],liveLink: string,repoLink: string } ],
   "experience": [ { "role": string, "company": string, "years": string } ],
   "skills": [string]
 }
 
 Rules:
 - If a field is missing, return null or an empty array.
+- If sites username  given you can generate related links. 
+- If any social site links given you can extract, so yoy free to extract username. 
 - Do not infer details that are not explicitly present.
 - Do not include extra commentary or text outside JSON.
 
