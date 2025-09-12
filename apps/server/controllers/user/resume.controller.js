@@ -6,15 +6,16 @@ import {
   removeFromCloudinary,
   uploadOnCloudinary,
 } from "../../services/cloudinary.service.js";
-import parseResume from "../../services/resume.service.js";
+import userInfoExtractor from "../../queue/queueJob.js";
 
 const userResumeUpload = AsyncHandler(async (req, res) => {
   const userLocalResume = req.file?.path;
   if (!userLocalResume) {
     throw new ApiError(400, "Resume not found or failed to upload");
   }
-  // text extract form pdf
-  const resumeRowText = await parseResume(userLocalResume);
+  //! pdf parser job create - job run
+ await userInfoExtractor(userLocalResume,req.user._id);
+
   // upload on cloudinary
   const uploadedResume = await uploadOnCloudinary(userLocalResume);
   if (!uploadedResume) {
@@ -35,8 +36,7 @@ const userResumeUpload = AsyncHandler(async (req, res) => {
   await resumeModal.findByIdAndUpdate(resume._id, {
     publicId: uploadedResume.public_id,
     url: uploadedResume.secure_url,
-    thumbnailUrl,
-    rowText: resumeRowText,
+    thumbnailUrl
   });
 
   return res.status(200).json(
@@ -47,4 +47,4 @@ const userResumeUpload = AsyncHandler(async (req, res) => {
   );
 });
 
-export default userResumeUpload
+export default userResumeUpload;

@@ -1,5 +1,4 @@
 import { v2 as cloudinary } from "cloudinary";
-import fs from "node:fs/promises";
 import {
   cloudinaryApiKey,
   cloudinaryApiSecret,
@@ -23,7 +22,7 @@ const uploadOnCloudinary = async (fileLocalPath) => {
     resource_type: "auto",
     pages: true,
   });
-  await fs.unlink(fileLocalPath);
+  
   return res;
 };
 
