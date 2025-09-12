@@ -8,25 +8,32 @@ const flowQueue = new FlowProducer({
 
 const queueName = "userInfoPipeline";
 async function userInfoExtractor(pdfLocalFilePath) {
-  if(!pdfLocalFilePath){
+  if (!pdfLocalFilePath) {
     throw new Error("fail to trigger queue job, pdf path missing!");
-  };
+  }
 
   const flowTree = await flowQueue.add({
-    // Get Github Info
-    name: "Github_Stats",
+    // save on data base
+    name: "Save_On_DB",
     queueName,
     children: [
       {
-        // Gen AI Parse data
-        name: "GenAI_Info_Extractor",
+        // Get Github Info
+        name: "Github_Stats",
         queueName,
         children: [
           {
-            // pdf-Parser
-            name: "User_pdf_Reader",
+            // Gen AI Parse data
+            name: "GenAI_Info_Extractor",
             queueName,
-            data: { pdfLocalFilePath },
+            children: [
+              {
+                // pdf-Parser
+                name: "User_pdf_Reader",
+                queueName,
+                data: { pdfLocalFilePath },
+              },
+            ],
           },
         ],
       },
