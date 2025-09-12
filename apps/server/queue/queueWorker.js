@@ -28,26 +28,24 @@ const userInfoExtractorWorker = new Worker(
         const prompt = extractUserInfo.replace("{{RESUME_TEXT}}", rowText);
         const llmRes = await genAI(prompt);
         const userInfo = JSON.parse(llmRes);
-        console.log(userInfo);
         return userInfo;
       }
 
       case "Github_Stats": {
         //! get github stats
         const data = await job.getChildrenValues();
-        const username = Object.values(data)[0];
-        const repos = await githubRepoInfo(username);
-        const readme = await githubUserReadme(username);
-        const userInfo = await githubUserInfo(username);
-        return { readme, userInfo, repos };
+        const username = Object.values(data)[0]?.githubUsername;
+        const githubRepos = await githubRepoInfo(username);
+        const userReadme = await githubUserReadme(username);
+        const githubUser = await githubUserInfo(username);
+        return { userReadme, githubUser, githubRepos };
       }
 
       case "Save_On_DB": {
         const data = await job.getChildrenValues();
-        const retuned = Object.values(data)[0];
-console.log(retuned);
-
-        await saveGithubDataInDB({ readme, userInfo, repos });
+        const githubData = Object.values(data)[0];
+        const userId = job.data.userId
+        await saveGithubDataInDB(githubData,userId);
 
         return "done";
       }
