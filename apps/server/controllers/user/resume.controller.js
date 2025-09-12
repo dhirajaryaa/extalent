@@ -14,7 +14,7 @@ const userResumeUpload = AsyncHandler(async (req, res) => {
     throw new ApiError(400, "Resume not found or failed to upload");
   }
   //! pdf parser job create - job run
- await userInfoExtractor(userLocalResume);
+ await userInfoExtractor(userLocalResume,req.user._id);
 
   // upload on cloudinary
   const uploadedResume = await uploadOnCloudinary(userLocalResume);
