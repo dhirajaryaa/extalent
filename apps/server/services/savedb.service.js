@@ -1,14 +1,11 @@
 import githubModal from "../model/github.model.js";
 import userModel from "../model/user.model.js";
 
-async function saveGithubDataInDB({
-  readme: userReadme,
-  userInfo: githubUser,
-  repos: githubRepos,
-}) {
+async function saveGithubDataInDB({ userReadme, githubUser, githubRepos },userId) {
+  
   // store working topics
   const topics = new Set([]);
-  githubRepos.forEach((repo) => {
+  githubRepos?.forEach((repo) => {
     repo.topics.forEach((topic) => {
       topics.add(topic);
     });
@@ -46,11 +43,27 @@ async function saveGithubDataInDB({
   }));
 
   // save in db
-  const updateGithub = await githubModal.findByIdAndUpdate(
+   let github = await githubModal.findOne({ userId });
+   if(!github){
+    github = await githubModal.create({
+      userId,
+          name: githubUser.name,
+      username: githubUser.login,
+      bio: githubUser.bio,
+      location: githubUser.location,
+      blog: githubUser.blog,
+      publicRepoCount: githubUser.public_repos,
+      readme: userReadme,
+      languages: topLanguages,
+      userWorkTopics: Array.from(topics),
+      topRepos,
+    });
+  }
+  await githubModal.findByIdAndUpdate(
     github._id,
     {
       name: githubUser.name,
-      username: githubUser.username,
+      username: githubUser.login,
       bio: githubUser.bio,
       location: githubUser.location,
       blog: githubUser.blog,
@@ -64,5 +77,4 @@ async function saveGithubDataInDB({
   );
 }
 
-
-export {saveGithubDataInDB};
+export { saveGithubDataInDB };
