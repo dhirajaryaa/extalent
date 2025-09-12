@@ -7,7 +7,7 @@ const flowQueue = new FlowProducer({
 });
 
 const queueName = "userInfoPipeline";
-async function userInfoExtractor(pdfLocalFilePath) {
+async function userInfoExtractor(pdfLocalFilePath,userId) {
   if (!pdfLocalFilePath) {
     throw new Error("fail to trigger queue job, pdf path missing!");
   }
@@ -16,6 +16,7 @@ async function userInfoExtractor(pdfLocalFilePath) {
     // save on data base
     name: "Save_On_DB",
     queueName,
+    data: {userId},
     children: [
       {
         // Get Github Info
